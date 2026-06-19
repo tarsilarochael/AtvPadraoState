@@ -1,25 +1,25 @@
 public class OrdemServico {
-    public int estado;
+    private Estado estado;
     public String descricao;
 
     public OrdemServico(String descricao) {
         this.descricao = descricao;
-        this.estado = new Aberto();
+        // Quando a OS nasce, ela começa no estado Aberto
+        this.estado = new Aberto(); 
     }
 
-    public void preAprovado() {
-        estado.preAprovado(this);
-    }
-
-    public void cancelar() {
-        estado.cancelar(this);
-    }
-
-    public void setState(AtividadeState newState) {
+    public void setState(Estado newState) {
         this.estado = newState;
     }
 
-    public String getState() {
-        return int estado;
-    }
+    // Repassando as chamadas para o estado atual:
+    public void abrir() { estado.abrir(this); }
+    public void diagnosticar() { estado.diagnosticar(this); }
+    public void autorizar() { estado.autorizar(this); }
+    public void cancelar() { estado.cancelar(this); }
+    public void executar() { estado.executar(this); }
+    public void finalizar() { estado.finalizar(this); }
+    public void testar() { estado.testar(this); }
+    public void aprovar() { estado.aprovar(this); }
+    public void pagar() { estado.pagar(this); }
 }
